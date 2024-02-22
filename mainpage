@@ -1,0 +1,50 @@
+import PackageDescription
+
+let package = Package(
+    name: "whisper",
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v14),
+        .watchOS(.v4),
+        .tvOS(.v14)
+    ],
+    products: [
+        .library(name: "whisper", targets: ["whisper"]),
+    ],
+    targets: [
+        .target(
+            name: "whisper",
+            path: ".",
+            exclude: [
+               "bindings",
+               "cmake",
+               "coreml",
+               "examples",
+               "extra",
+               "models",
+               "samples",
+               "tests",
+               "CMakeLists.txt",
+               "ggml-cuda.cu",
+               "ggml-cuda.h",
+               "Makefile"
+            ],
+            sources: [
+                "ggml.c",
+                "whisper.cpp",
+                "ggml-alloc.c",
+                "ggml-backend.c",
+                "ggml-quants.c",
+                "ggml-metal.m"
+            ],
+
+
+
+      cmake_minimum_required( VERSION 2.6 )
+project( algorithm )
+
+include_directories( "include" )
+include_directories( "." )
+if( MSVC )
+	include_directories( "msvc" )
+endif()
